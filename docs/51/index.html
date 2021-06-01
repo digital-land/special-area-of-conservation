@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
+  <head>
+    <meta charset="utf-8">
+    <title>Asby Complex | Special-area-of-conservation | Digital Land</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" sizes="48x48" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" sizes="32x32" href="/images/favicon-32x32.png" type="image/png">
+<link rel="shortcut icon" sizes="16x16" href="/images/favicon-16x16.png" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<meta name="digital-land:template" content="page-per-thing/record.html"><!-- should make this optional, no need to load if not showing a map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin="" />
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+	crossorigin=""></script>
+
+<!-- assets needed for fullscreen maps -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+
+<!-- script needed for recentring map -->
+<script src="https://digital-land.github.io/javascripts/Leaflet.recentre.js"></script>
+
+<script src="https://digital-land.github.io/javascripts/dl-maps.js"></script>	<link href="https://digital-land.github.io/stylesheets/dl-frontend.css" rel="stylesheet" />    <meta property="og:image" content="/images/govuk-opengraph-image.png">
+  </head>
+  <body class="govuk-template__body ">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+<!-- Cookie banner partial version 1.0.1 -->
+<div id="global-cookie-message" class="govuk-clearfix global-cookie-message" data-module="cookie-banner" role="region" aria-label="cookie banner" data-nosnippet="">
+
+  <div id="cookie-banner" class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="cookie-banner__message govuk-!-margin-top-6">
+          <h2 class="govuk-heading-m">Tell us whether you accept cookies</h2>
+          <p class="govuk-body">We use <a class="govuk-link" href="/cookies">cookies to collect information</a> about how you use the Digital Land website to make the website work as well as possible.</p>
+        </div>
+        <div class="cooke-banner__buttons govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+            <button class="govuk-button" onclick="acceptCookies();showCookieConfirmation();">Accept all cookies</button>
+          </div>
+          <div class="govuk-grid-column-one-half">
+            <a class="govuk-button" href="/cookies">Set cookie preferences</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cookie-confirmation" class="govuk-width-container govuk-!-padding-top-6" tabindex="-1" style="display: none;">
+    <p class="cookie-banner__confirmation-message govuk-body">You’ve accepted all cookies. You can <a class="govuk-link" href="/cookies">change your cookie settings</a> at any time.</p>
+    <button class="cookie-banner__hide-button govuk-button govuk-button--secondary" onclick="document.getElementById('cookie-confirmation').style.display='none';">Hide</button>
+  </div>
+
+</div><header role="banner" id="global-header" class="govuk-header  with-proposition dl-header" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="header-proposition">
+      <div class="govuk-header__content">
+        <a href="https://digital-land.github.io/" class="govuk-header__link govuk-header__link--service-name">
+        Digital Land
+        </a>
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>        <nav>
+          <ul id="navigation" class="govuk-header__navigation" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/about">Team</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/project/">Projects</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/weeknote/">Weeknotes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/blog-post/">Blog</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/guidance/">Guidance</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/dataset/">Datasets</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/organisation/">Organisations</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/map/">Map</a>
+            </li>
+          </ul>
+        </nav>
+</div>
+    </div>
+  </div>
+</header>
+
+      <div class="govuk-width-container ">
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  prototype
+</strong><span class="govuk-phase-banner__text">
+      This is a prototype. Please provide feedback to the Digital Land team.
+    </span>
+  </p>
+</div><div class="govuk-breadcrumbs ">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="/">Digital Land</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../">Special Area Of Conservation</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item" aria-current="page">special-area-of-conservation:51</li>
+  </ol>
+</div>        <main class="govuk-main-wrapper " id="main-content" role="main">
+
+<span class="govuk-caption-xl">Special area of conservation</span>
+    <h1 class="govuk-heading-xl">Asby Complex</h1>
+<div class="govuk-tabs" data-module="dlf-subnav">
+    <h2 class="govuk-tabs__title">
+      Contents
+    </h2>
+    <nav class="dlf-subnav" aria-label="Sub navigation">
+        <ul class="dlf-subnav__list">
+            <li class="dlf-subnav__list-item dlf-subnav__list-item--selected">
+                <a class="dlf-subnav__list-item__link" href="#record" data-module-sub-nav="tab">
+                Record
+                </a>
+            </li>
+            <li class="dlf-subnav__list-item">
+                <a class="dlf-subnav__list-item__link" href="#history" data-module-sub-nav="tab">
+                History
+                </a>
+            </li><li class="dlf-subnav__list-item">
+                <a class="dlf-subnav__list-item__link" href="#referenced-by" data-module-sub-nav="tab">
+                0 References
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+<div id="record">
+<div class="govuk-grid-row">    <div class="govuk-grid-column-two-thirds"><article class="data-record govuk-!-margin-bottom-6">
+    <h4 class="govuk-heading-s data-record__identifier">#/special-area-of-conservation/51</h4>
+    <dl class="govuk-summary-list data-record__properties">            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">geography
+            </dt>
+            <dd class="govuk-summary-list__value">                special-area-of-conservation:51            </dd>
+        </div>        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">name
+            </dt>
+            <dd class="govuk-summary-list__value">                Asby Complex            </dd>
+        </div>        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">start-date
+            </dt>
+            <dd class="govuk-summary-list__value">                2015-11-10            </dd>
+        </div>        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">entry-date
+            </dt>
+            <dd class="govuk-summary-list__value">                2021-06-01            </dd>
+        </div>    
+    </dl></article>
+</div>
+            
+</div>
+
+    <h2 class="govuk-heading-m">Geographical area</h2>
+
+    <div class="dl-map__wrapper"><div 
+    class="dl-map govuk-!-margin-top-4"
+    id="dlMap"
+    data-module="boundary-map"
+    style="height: 460px;" data-geojson-urls="geometry.geojson"   
+>
+    <noscript>To view this map, you need to enable JavaScript.</noscript>
+</div>
+    </div>
+
+    <div class="govuk-!-margin-top-2 govuk-!-margin-bottom-6">
+        <a class="dl-page-action-button" href="geometry.geojson">Download geojson</a>
+    </div>
+<h3 class="govuk-heading-m">Associated information</h3>
+
+<ul class="govuk-list govuk-list--bullet">
+    <li><a href="https://digital-land.github.io/specification/schema/geography/">View the geography schema</a></li></ul>
+
+</div>
+
+<div id="history"><h2 class="govuk-heading-m dlf-subnav__heading">History</h2>
+<div class="data-table__wrapper" data-module="data-table">
+    <div class="data-table-left-shadow with-transition"></div>
+    <div class="wide-table">
+        <table class="data-table">
+    <thead>
+        <tr>
+            <th>entry-date</th>
+            <th>resource</th>
+            <th>line</th>
+            <th>geometry</th>
+            <th>start-date</th>
+            <th>geography</th>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody>        <tr>
+            <td>2021-06-01</td>
+            <td><a href="https://github.com/digital-land/special-area-of-conservation-collection/tree/main/transformed/special-area-of-conservation/be978e08d9c4c0e071f6d70254387f6ddcccf70350ce24893af5149946aef77e.csv#L52">be978e08d9c4...</a></td>
+            <td>51</td>
+                <td class="data-table__notes-cell data-table__cell--min-width-4">
+                    <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      See WKT
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    MULTIPOLYGON (((-2.586509 54.519576,-2.586547 54.519500,-2.586627 54.519506,-2.586743 54.519254,-2.586786 54.519255,-2.586839 54.519102,-2.586835 54.518542,-2.586862 54.518335,-2.586935 54.517938,-2.587170 54.517191,-2.587280 54.516172,-2.588254 54.516223,-2.589252 54.515516,-2.591636 54.514128,-2.592498 54.513521,-2.592707 54.513338,-2.593153 54.513304,-2.593528 54.513101,-2.593869 54.512970,-2.595004 54.512355,-2.596011 54.511890,-2.596763 54.511393,-2.597256 54.510992,-2.597896 54.510143,-2.598592 54.509454,-2.599770 54.508394,-2.600106 54.508145,-2.601050 54.507550,-2.601543 54.507158,-2.602120 54.506827,-2.603016 54.506405,-2.603126 54.506318,-2.603304 54.506097,-2.603509 54.505709,-2.603944 54.505105,-2.604188 54.504630,-2.604437 54.504269,-2.604478 54.504092,-2.604742 54.503993,-2.604971 54.503857,-2.605804 54.503224,-2.606381 54.502574,-2.606264 54.502485,-2.605984 54.502387,-2.605444 54.501905,-2.604718 54.501342,-2.604579 54.501316,-2.604252 54.501160,-2.603645 54.500804,-2.603287 54.500630,-2.602317 54.500294,-2.601431 54.501434,-2.601434 54.501521,-2.596302 54.500786,-2.593370 54.501740,-2.592973 54.502164,-2.592721 54.502284,-2.592659 54.502357,-2.592595 54.502487,-2.592600 54.502615,-2.592651 54.502704,-2.592802 54.502844,-2.592162 54.503184,-2.592011 54.503458,-2.591989 54.503627,-2.591870 54.503724,-2.591873 54.503829,-2.591730 54.503891,-2.591656 54.503979,-2.591731 54.504179,-2.591837 54.504326,-2.592204 54.504531,-2.593073 54.504457,-2.593486 54.504524,-2.594140 54.504563,-2.595084 54.504732,-2.595534 54.504923,-2.595999 54.504608,-2.596524 54.504613,-2.596655 54.504701,-2.596783 54.504647,-2.596884 54.504645,-2.596994 54.504717,-2.597047 54.504717,-2.597391 54.504624,-2.597792 54.504468,-2.598048 54.504483,-2.598133 54.504531,-2.598173 54.504640,-2.598368 54.504583,-2.598474 54.504600,-2.598882 54.504864,-2.598500 54.504959,-2.597569 54.504958,-2.596403 54.505082,-2.595132 54.505148,-2.594372 54.505252,-2.593649 54.505291,-2.592902 54.505459,-2.592442 54.505629,-2.592298 54.505719,-2.592215 54.505694,-2.591569 54.505249,-2.591437 54.504996,-2.591208 54.504958,-2.591023 54.504865,-2.590612 54.504806,-2.590485 54.504887,-2.590121 54.505263,-2.590054 54.505403,-2.590083 54.505675,-2.590032 54.505926,-2.589945 54.506074,-2.589664 54.506354,-2.589325 54.506516,-2.588990 54.506596,-2.588856 54.506675,-2.588641 54.506740,-2.588107 54.507173,-2.587964 54.507221,-2.587652 54.507421,-2.587395 54.507515,-2.587351 54.507475,-2.587557 54.507230,-2.588143 54.506815,-2.588578 54.506194,-2.589169 54.505237,-2.589770 54.503194,-2.589784 54.502964,-2.589833 54.502960,-2.590089 54.501662,-2.590138 54.501086,-2.589620 54.500939,-2.589584 54.501007,-2.589162 54.500920,-2.589092 54.500871,-2.589120 54.500633,-2.589107 54.500327,-2.589099 54.500242,-2.589019 54.500081,-2.589087 54.499421,-2.588047 54.499623,-2.587413 54.499504,-2.586452 54.499257,-2.585829 54.499454,-2.585459 54.499473,-2.584096 54.499763,-2.583842 54.499778,-2.583271 54.499676,-2.583187 54.499314,-2.583168 54.499044,-2.583194 54.498743,-2.583150 54.498348,-2.583377 54.497520,-2.583459 54.497313,-2.583619 54.497110,-2.583693 54.496885,-2.583309 54.496536,-2.583101 54.496573,-2.582754 54.495837,-2.584254 54.495120,-2.583773 54.494934,-2.583616 54.494912,-2.583594 54.494859,-2.583313 54.494644,-2.582645 54.494364,-2.582148 54.494704,-2.581851 54.494970,-2.581382 54.495094,-2.580414 54.494842,-2.578556 54.492883,-2.577411 54.492102,-2.575953 54.489485,-2.575437 54.488445,-2.575117 54.487597,-2.575045 54.486892,-2.575051 54.486200,-2.575122 54.485247,-2.575215 54.484703,-2.575470 54.483583,-2.578699 54.482906,-2.578948 54.483394,-2.582213 54.483562,-2.583474 54.483624,-2.585187 54.483613,-2.586341 54.483651,-2.587277 54.483582,-2.588658 54.483602,-2.591731 54.483562,-2.594067 54.483246,-2.595393 54.482929,-2.597495 54.482533,-2.611555 54.479945,-2.612749 54.479764,-2.615289 54.480376,-2.618171 54.477054,-2.618307 54.476833,-2.618209 54.476487,-2.618178 54.476488,-2.618102 54.475716,-2.618612 54.475883,-2.619430 54.476095,-2.622894 54.476571,-2.623583 54.476716,-2.624196 54.476929,-2.625339 54.477502,-2.626535 54.477999,-2.627221 54.478379,-2.628471 54.478969,-2.630234 54.479706,-2.632214 54.480374,-2.632241 54.480549,-2.632076 54.480586,-2.632263 54.481699,-2.632721 54.482820,-2.633731 54.484490,-2.634089 54.484979,-2.634509 54.485256,-2.635550 54.486345,-2.636059 54.486798,-2.638152 54.488358,-2.638954 54.489017,-2.639694 54.489694,-2.640510 54.490549,-2.641413 54.491670,-2.642092 54.492627,-2.642508 54.493342,-2.642882 54.494102,-2.643094 54.495481,-2.643573 54.497506,-2.644082 54.500452,-2.644409 54.501394,-2.644542 54.501708,-2.645992 54.504056,-2.646491 54.504701,-2.646734 54.504952,-2.646652 54.505057,-2.646683 54.505158,-2.646951 54.505513,-2.646876 54.505545,-2.647057 54.505982,-2.646246 54.507004,-2.645755 54.507518,-2.645643 54.507686,-2.645607 54.507831,-2.645641 54.508298,-2.645614 54.508595,-2.645378 54.509221,-2.645371 54.509310,-2.645560 54.509710,-2.645700 54.509697,-2.645999 54.509855,-2.645914 54.509878,-2.645831 54.510035,-2.645675 54.510187,-2.645673 54.510273,-2.645733 54.510398,-2.645587 54.510638,-2.645565 54.510733,-2.645473 54.510808,-2.645237 54.510887,-2.645144 54.511065,-2.644990 54.511131,-2.644996 54.511517,-2.645045 54.511688,-2.644902 54.511910,-2.644388 54.512149,-2.644025 54.512239,-2.643767 54.512229,-2.643065 54.512116,-2.642933 54.512017,-2.643192 54.511668,-2.643467 54.511429,-2.643545 54.511316,-2.642663 54.511183,-2.642282 54.511231,-2.642048 54.511363,-2.641903 54.511529,-2.640925 54.511963,-2.640850 54.512258,-2.640659 54.512639,-2.639952 54.513772,-2.639929 54.513803,-2.639695 54.513854,-2.639580 54.513928,-2.639253 54.514238,-2.639007 54.514568,-2.638969 54.514731,-2.639014 54.514851,-2.639119 54.515000,-2.639313 54.515070,-2.639514 54.515588,-2.637912 54.515268,-2.635861 54.514696,-2.634395 54.514498,-2.633977 54.514507,-2.633297 54.514611,-2.632799 54.514633,-2.632152 54.514765,-2.631765 54.514732,-2.631725 54.514717,-2.631660 54.514507,-2.631375 54.514125,-2.631261 54.514074,-2.630643 54.513983,-2.628935 54.512570,-2.627790 54.512754,-2.625200 54.512932,-2.624051 54.512940,-2.624019 54.512996,-2.623511 54.512962,-2.622782 54.512975,-2.622384 54.513058,-2.621861 54.513008,-2.621004 54.513049,-2.620413 54.513041,-2.619954 54.512998,-2.619658 54.513023,-2.619616 54.513015,-2.619577 54.512935,-2.618726 54.513047,-2.617975 54.513015,-2.617286 54.512945,-2.616643 54.512970,-2.616545 54.513001,-2.616189 54.512975,-2.615676 54.512885,-2.614355 54.512871,-2.612254 54.512738,-2.611776 54.512780,-2.611438 54.513094,-2.610926 54.513021,-2.611043 54.512785,-2.611150 54.512237,-2.611167 54.511917,-2.611123 54.511762,-2.610963 54.511569,-2.610342 54.511086,-2.610116 54.510947,-2.609777 54.510837,-2.608608 54.510570,-2.607811 54.510466,-2.605890 54.510108,-2.605774 54.510113,-2.604876 54.510547,-2.604209 54.511017,-2.603744 54.510725,-2.602898 54.510411,-2.601259 54.511088,-2.600505 54.511433,-2.599992 54.511724,-2.599103 54.512341,-2.599055 54.512323,-2.598979 54.512377,-2.599011 54.512386,-2.598905 54.512785,-2.598735 54.512778,-2.598663 54.512650,-2.598570 54.512592,-2.598194 54.512556,-2.597718 54.512618,-2.597172 54.512739,-2.596778 54.513012,-2.596802 54.513027,-2.596742 54.513104,-2.596435 54.513087,-2.595516 54.513342,-2.594595 54.513634,-2.594085 54.513901,-2.593513 54.514128,-2.592620 54.514315,-2.591545 54.514648,-2.591241 54.515050,-2.590832 54.515167,-2.590409 54.515333,-2.589823 54.515747,-2.589497 54.516075,-2.589320 54.516311,-2.588955 54.516956,-2.588849 54.517269,-2.588649 54.517330,-2.588516 54.517564,-2.588276 54.518078,-2.588192 54.518385,-2.588108 54.518533,-2.588149 54.518571,-2.587935 54.518634,-2.587906 54.518670,-2.587338 54.519596,-2.587147 54.519560,-2.586839 54.520057,-2.586509 54.519576),(-2.624880 54.502401,-2.624156 54.502461,-2.624117 54.502916,-2.624692 54.503407,-2.624944 54.503576,-2.625298 54.503913,-2.625589 54.504029,-2.625591 54.504069,-2.625546 54.504092,-2.626155 54.504682,-2.626384 54.504712,-2.626718 54.504702,-2.628098 54.504453,-2.628280 54.504377,-2.627846 54.502188,-2.627485 54.501949,-2.627314 54.501921,-2.626810 54.502061,-2.626168 54.502161,-2.625395 54.502333,-2.624880 54.502401),(-2.591695 54.492258,-2.591616 54.492223,-2.591532 54.492317,-2.591035 54.492625,-2.590936 54.492724,-2.590629 54.492861,-2.589922 54.493075,-2.588743 54.493322,-2.588784 54.493459,-2.588886 54.493611,-2.588889 54.493804,-2.588964 54.494186,-2.588946 54.494446,-2.588985 54.494522,-2.589028 54.494832,-2.589203 54.495159,-2.589676 54.495827,-2.590080 54.496557,-2.590092 54.496854,-2.590024 54.497029,-2.591496 54.497087,-2.591835 54.496579,-2.592080 54.496129,-2.592107 54.496000,-2.592053 54.495918,-2.592068 54.495820,-2.591915 54.494247,-2.591695 54.492258),(-2.616596 54.506171,-2.617034 54.506070,-2.617752 54.505536,-2.618135 54.505345,-2.618165 54.505242,-2.617943 54.504839,-2.617894 54.504695,-2.618385 54.504517,-2.619033 54.504478,-2.619653 54.504360,-2.619761 54.504301,-2.619833 54.504183,-2.619656 54.503573,-2.619633 54.503161,-2.619657 54.502832,-2.619520 54.502252,-2.619554 54.502176,-2.619557 54.502032,-2.619331 54.501654,-2.619157 54.501431,-2.619085 54.501278,-2.618921 54.501122,-2.618881 54.501014,-2.618834 54.500979,-2.618687 54.500979,-2.618108 54.501504,-2.617902 54.501639,-2.617289 54.502456,-2.617068 54.502668,-2.616746 54.502836,-2.616494 54.503017,-2.615628 54.503457,-2.615422 54.503598,-2.615248 54.503823,-2.614523 54.504384,-2.613961 54.505003,-2.614041 54.505200,-2.614372 54.505529,-2.614063 54.505667,-2.613717 54.505772,-2.613365 54.506448,-2.613373 54.506506,-2.613499 54.506681,-2.613624 54.506766,-2.613756 54.506770,-2.614317 54.506641,-2.615565 54.506441,-2.616596 54.506171),(-2.634130 54.512029,-2.634071 54.512068,-2.633941 54.512040,-2.633685 54.512241,-2.633231 54.512237,-2.632781 54.512342,-2.632694 54.512769,-2.632732 54.513056,-2.632716 54.513191,-2.632634 54.513482,-2.632699 54.513719,-2.632838 54.513744,-2.633282 54.513691,-2.634692 54.513282,-2.634573 54.513092,-2.634632 54.513078,-2.634598 54.512986,-2.634734 54.512908,-2.634784 54.512684,-2.635004 54.512816,-2.635084 54.512949,-2.635355 54.512989,-2.635400 54.513128,-2.635470 54.513191,-2.635651 54.513173,-2.636205 54.513265,-2.636486 54.513266,-2.636729 54.513194,-2.637161 54.513190,-2.637347 54.513155,-2.637609 54.513051,-2.637756 54.512919,-2.637793 54.512658,-2.637769 54.512416,-2.637803 54.512022,-2.637892 54.511864,-2.637824 54.511440,-2.637957 54.511094,-2.637825 54.510833,-2.637896 54.510596,-2.637884 54.510491,-2.637757 54.510240,-2.637778 54.509673,-2.637889 54.509001,-2.637970 54.508778,-2.638118 54.508035,-2.638185 54.507232,-2.638226 54.506075,-2.637425 54.505979,-2.637077 54.506025,-2.636873 54.506102,-2.636194 54.506570,-2.635174 54.507475,-2.634613 54.507791,-2.634180 54.508287,-2.633911 54.508517,-2.633555 54.508906,-2.633483 54.509084,-2.633369 54.509664,-2.633404 54.510107,-2.633486 54.510293,-2.633988 54.510903,-2.634153 54.511198,-2.634252 54.511455,-2.634362 54.511933,-2.634130 54.512029)))
+  </div>
+</details>
+                </td>
+                <td>2015-11-10</td> 
+                <td>special-area-of-conservation:51</td> 
+                <td>Asby Complex</td> 
+        </tr>    </tbody>
+</table>
+
+    </div>
+    <div class="data-table-right-shadow visible with-transition"></div>
+</div>
+</div><div id="referenced-by">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h2 class="govuk-heading-m dlf-subnav__heading">Referenced by</h2>
+            <p class="govuk-body">This record is referenced by 0 other planning related data records.</p>
+</div>
+    </div>
+</div>
+        </main>
+      </div>
+
+    <div class="dlf-feedback__wrapper">
+    <div class="dlf-feedback">
+    <div class="dlf-feedback__prompt">
+        <div class="dlf-feedback__prompt-content">
+            <span class="dlf-feedback__prompt-content__text">Spotted an issue? Let us know so we can improve the data.</span>
+        </div>
+        <div class="dlf-feedback__prompt-action">
+            <a href="mailto:digitalLand@communities.gov.uk?subject=Feedback on (geography) Asby Complex -- special-area-of-conservation" class="govuk-button dlf-feedback__prompt__link">There is something wrong with the data</a>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<footer class="govuk-footer " role="contentinfo"
+>
+  <div class="govuk-width-container ">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+          <h2 class="govuk-visually-hidden">Support links</h2>              <ul class="govuk-footer__inline-list">
+                  <li class="govuk-footer__inline-list-item">
+                    <a class="govuk-footer__link" href="/cookies">
+                      Cookies
+                    </a>
+                  </li>
+                  <li class="govuk-footer__inline-list-item">
+                    <a class="govuk-footer__link" href="/accessibility-statement">
+                      Accessibility statement
+                    </a>
+                  </li>
+                  <li class="govuk-footer__inline-list-item">
+                    <a class="govuk-footer__link" href="/design-system">
+                      Design system
+                    </a>
+                  </li>
+              </ul>
+            <div class="govuk-footer__meta-custom">
+              The <a class="govuk-footer__link" href="https://github.com/digital-land/digital-land/">software</a> and <a class="govuk-footer__link" href="https://github.com/digital-land/digital-land/">data</a> used to build these pages is <a class="govuk-footer__link" href="https://github.com/digital-land/digital-land/blob/master/LICENSE">open source</a>.
+            </div>
+        <svg
+          role="presentation"
+          focusable="false"
+          class="govuk-footer__licence-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 483.2 195.7"
+          height="17"
+          width="41"
+        >
+          <path
+            fill="currentColor"
+            d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+          />
+        </svg>
+        <span class="govuk-footer__licence-description">
+          All content is available under the
+          <a
+            class="govuk-footer__link"
+            href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            rel="license"
+          >Open Government Licence v3.0</a>, except where otherwise stated
+        </span>
+      </div>
+      <div class="govuk-footer__meta-item">
+        <a
+          class="govuk-footer__link govuk-footer__copyright-logo"
+          href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+        >© Crown copyright</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://digital-land.github.io/javascripts/dl-cookies.js"></script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
+	<!-- end google analytics -->
+
+	<script src="https://digital-land.github.io/javascripts/govuk/govuk-frontend.min.js"></script>
+	<script>
+		// initiate all GOVUK components
+		window.GOVUKFrontend.initAll();
+	</script>
+
+	<script src="https://digital-land.github.io/javascripts/dl-frontend.js"></script>
+	<script>
+		// adds any necessary polyfills
+		window.DLFrontend.polyfill();
+	</script>
+
+<script>
+    const datasetName = "special-area-of-conservation"
+    const $mapElement = document.querySelector('[data-module="boundary-map"]')
+    const $nationalMapLink = document.querySelector('.dl-link-national-map')
+    const mapComponent = new DLMaps.Map($mapElement).init({
+        initGeoJsonLoadCallback: function (urls, featureGroup) {
+            console.log("initial load completed")
+            // do we need to check there isn't more than one shape?
+            const center = featureGroup.getBounds().getCenter()
+            const zoom = mapComponent.map.getZoom()
+            let url = `http://digital-land.github.io/map?layer=${datasetName}#${center.lat},${center.lng},${zoom}z`
+            console.log(url)
+            if ($nationalMapLink) {
+                // only show this for the datasets we've added to the national map
+                $nationalMapLink.href = url
+                $nationalMapLink.classList.remove("js-hidden")
+            }
+        }
+    })
+</script>
+<script>
+    // Initialise back to top
+    var $data_tables = document.querySelectorAll('[data-module*="data-table"]')
+    $data_tables.forEach(data_table => {
+        new window.DLFrontend.ScrollableTables(data_table).init()
+    })
+</script>
+
+<script>
+    const $subNavTabs = document.querySelector('[data-module="dlf-subnav"]')
+    const subNavTabsComponent = new DLFrontend.SubNavTabs($subNavTabs).init({})
+</script>  </body>
+</html>
