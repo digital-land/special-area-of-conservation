@@ -1,4 +1,4 @@
-# pages
+# Special area of conservation pages
 
 We recommend working in [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/) before installing the python [requirements](requirements.txt), [makerules](https://github.com/digital-land/makerules) and other dependencies:
 
