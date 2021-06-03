@@ -155,13 +155,13 @@ crossorigin="" />
             </dt>
             <dd class="govuk-summary-list__value">                special-area-of-conservation:205            </dd>
         </div>        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">name
-            </dt>
-            <dd class="govuk-summary-list__value">                The Stiperstones &amp; The Hollies            </dd>
-        </div>        <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">start-date
             </dt>
             <dd class="govuk-summary-list__value">                2012-11-29            </dd>
+        </div>        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">name
+            </dt>
+            <dd class="govuk-summary-list__value">                The Stiperstones &amp; The Hollies            </dd>
         </div>        <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">entry-date
             </dt>
@@ -205,9 +205,9 @@ crossorigin="" />
             <th>resource</th>
             <th>line</th>
             <th>geometry</th>
-            <th>geography</th>
-            <th>start-date</th>
             <th>name</th>
+            <th>start-date</th>
+            <th>geography</th>
         </tr>
     </thead>
     <tbody>        <tr>
@@ -226,9 +226,9 @@ crossorigin="" />
   </div>
 </details>
                 </td>
-                <td>special-area-of-conservation:205</td> 
-                <td>2012-11-29</td> 
                 <td>The Stiperstones &amp; The Hollies</td> 
+                <td>2012-11-29</td> 
+                <td>special-area-of-conservation:205</td> 
         </tr>    </tbody>
 </table>
 
@@ -338,7 +338,7 @@ crossorigin="" />
     const $mapElement = document.querySelector('[data-module="boundary-map"]')
     const $nationalMapLink = document.querySelector('.dl-link-national-map')
     const mapComponent = new DLMaps.Map($mapElement).init({
-        initGeoJsonLoadCallback: function (urls, featureGroup) {
+        initZoomCallback: function (featureGroup) {
             console.log("initial load completed")
             // do we need to check there isn't more than one shape?
             const center = featureGroup.getBounds().getCenter()
