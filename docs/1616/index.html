@@ -149,7 +149,8 @@ crossorigin="" />
     </nav>
 
 <div id="record">
-<div class="govuk-grid-row">    <div class="govuk-grid-column-two-thirds"><article class="data-record govuk-!-margin-bottom-6">
+<div class="govuk-grid-row">    <div class="govuk-grid-column-two-thirds">
+        <!-- this section can probably be removed. Entities no longer have a resource field<article class="data-record govuk-!-margin-bottom-6">
     <h4 class="govuk-heading-s data-record__identifier">#/special-area-of-conservation/1616</h4>
     <dl class="govuk-summary-list data-record__properties">            <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Start date
@@ -160,15 +161,15 @@ crossorigin="" />
             </dt>
             <dd class="govuk-summary-list__value">                Dorset Heaths            </dd>
         </div>        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Geography
+            </dt>
+            <dd class="govuk-summary-list__value">                special-area-of-conservation:1616            </dd>
+        </div>        <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Organisation
             </dt>
             <dd class="govuk-summary-list__value">
 <span title="Organisation identifier: government-organisation:PB202" class="govuk-!-font-size-16 secondary-text data-reference">(<span class="govuk-visually-hidden">Organisation identifier is </span>government-organisation:PB202)</span>
             </dd>
-        </div>        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Geography
-            </dt>
-            <dd class="govuk-summary-list__value">                special-area-of-conservation:1616            </dd>
         </div>        <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Entity
             </dt>
@@ -215,10 +216,10 @@ crossorigin="" />
             <th>resource</th>
             <th>line</th>
             <th>start-date</th>
-            <th>geography</th>
             <th>organisation</th>
-            <th>name</th>
             <th>geometry</th>
+            <th>geography</th>
+            <th>name</th>
         </tr>
     </thead>
     <tbody>        <tr>
@@ -226,9 +227,7 @@ crossorigin="" />
             <td><a href="https://github.com/digital-land/special-area-of-conservation-collection/tree/main/transformed/special-area-of-conservation/be978e08d9c4c0e071f6d70254387f6ddcccf70350ce24893af5149946aef77e.csv#L1617">be978e08d9c4...</a></td>
             <td>1616</td>
                 <td>2018-01-08</td> 
-                <td>special-area-of-conservation:1616</td> 
                 <td>government-organisation:PB202</td> 
-                <td>Dorset Heaths</td> 
                 <td class="data-table__notes-cell data-table__cell--min-width-4">
                     <details class="govuk-details">
   <summary class="govuk-details__summary">
@@ -241,6 +240,8 @@ crossorigin="" />
   </div>
 </details>
                 </td>
+                <td>special-area-of-conservation:1616</td> 
+                <td>Dorset Heaths</td> 
         </tr>    </tbody>
 </table>
 
